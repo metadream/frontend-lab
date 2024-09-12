@@ -1,0 +1,174 @@
+* {
+  box-sizing: border-box;
+}
+
+@font-face {
+  font-family: Poppins;
+  src: local('Poppins Light'), local('Poppins-Light'), url(//cdn.arraywork.com/assets/font/poppins-light.woff2) format('woff2')
+}
+
+body {
+  margin: 0;
+  height: 100vh;
+  display: flex;
+  color: #333;
+  font: 15px/1.6 Poppins;
+  overflow: hidden;
+}
+
+a {
+  color: #505d6b;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #de5246;
+  text-decoration: underline;
+}
+
+h1, h2, h3 {
+  color: #4688f4;
+}
+
+h1:first-child {
+  margin-top: 0;
+}
+
+aside {
+  width: 300px;
+  height: 100%;
+  background: #fff;
+  border-right: #ddd 1px solid;
+  overflow: auto;
+}
+
+aside::-webkit-scrollbar {
+  width: 5px;
+}
+
+aside::-webkit-scrollbar-thumb {
+  background-color: #eee;
+}
+
+nav {
+  margin: 30px;
+}
+
+nav a.actived {
+  color: #de5246;
+}
+
+menu {
+  position: fixed;
+  z-index: 10;
+  left: 0;
+  bottom: 0;
+  margin: 0;
+  padding: 0;
+  width: 40px;
+  height: 40px;
+  background: #fff;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+menu svg {
+  fill: #666;
+  width: 20px;
+  height: 20px;
+}
+
+main {
+  position: relative;
+  flex: 1;
+  padding: 5%;
+  overflow: auto;
+}
+
+main.with-frame {
+  padding: 0;
+  overflow: initial;
+}
+
+iframe {
+  border: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.apps {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 5%;
+}
+
+.apps section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 2%;
+  width: 100px;
+  white-space: nowrap;
+}
+
+.apps a {
+  width: 64px;
+  height: 64px;
+  padding: 15px;
+  border-radius: 10px;
+  margin-bottom: 5px;
+  background: #ccc;
+}
+
+.loading {
+  position: absolute;
+  height: 30px;
+  left: 50%;
+  top: 50%;
+  transform: translate3d(-50%, -50%, 0);
+}
+
+.logo {
+  padding: 20px;
+  font-size: 20px;
+  font-weight: 700;
+  border-bottom: #eee 1px solid;
+  color: #66af78;
+  text-align: center;
+}
+
+.logo img {
+  vertical-align: middle;
+  width: 64px;
+}
+
+ul {
+  padding-left: 20px;
+}
+
+ul p {
+  margin: 20px 0 15px;
+  font-weight: 700;
+  color: #4688f4;
+}
+
+li {
+  margin: 8px 0;
+}
+
+@media (max-width: 800px) {
+  aside {
+    position: fixed;
+    z-index: 9;
+    left: -300px;
+    transition: left .3s;
+  }
+  aside.slide {
+    left: 0;
+  }
+  menu {
+    display: flex;
+  }
+}

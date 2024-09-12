@@ -1,0 +1,37 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"/>
+  <title>Rollover Countdown</title>
+  <style>.counter{position:fixed;top:20%;left:50%;transform:translate(-50%,-50%);text-align:center}.counter.hide{transform:translate(-50%,-50%) scale(0);animation:hide .2s ease-out}@keyframes show{0%{transform:translate(-50%,-50%) scale(0)}80%{transform:translate(-50%,-50%) scale(1.4)}100%{transform:translate(-50%,-50%) scale(1)}}@keyframes hide{0%{transform:translate(-50%,-50%) scale(1)}100%{transform:translate(-50%,-50%) scale(0)}}.seconds{position:relative;overflow:hidden;color:#3498db;font-size:36px;width:250px;height:50px;line-height:60px}.seconds span{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%) rotate(120deg);transform-origin:bottom center}.seconds span.in{transform:translate(-50%,-50%) rotate(0);animation:goIn .5s ease-in-out}.seconds span.out{animation:goOut .5s ease-in-out}@keyframes goIn{0%{transform:translate(-50%,-50%) rotate(120deg)}30%{transform:translate(-50%,-50%) rotate(-20deg)}60%{transform:translate(-50%,-50%) rotate(10deg)}100%,90%{transform:translate(-50%,-50%) rotate(0)}}@keyframes goOut{0%,30%{transform:translate(-50%,-50%) rotate(0)}60%{transform:translate(-50%,-50%) rotate(20deg)}100%{transform:translate(-50%,-50%) rotate(-120deg)}}
+</style>
+</head>
+<body>
+<main>
+  <div class="counter"><div class="seconds">
+    <span class="in">5</span><span>4</span><span>3</span><span>2</span><span>1</span><span>0</span>
+  </div></div>
+</main>
+<script>
+const counter = document.querySelector('.counter')
+const seconds = document.querySelectorAll('.seconds span')
+;(function countdown() {
+  seconds.forEach((sec, idx) => {
+    const penultimate = seconds.length - 1
+    sec.addEventListener('animationend', e => {
+      if(e.animationName === 'goIn' && idx !== penultimate) {
+        sec.classList.remove('in')
+        sec.classList.add('out')
+      } else if (e.animationName === 'goOut' && sec.nextElementSibling) {
+        sec.nextElementSibling.classList.add('in')
+      } else {
+        counter.classList.add('hide')
+        //location.href = 'https://www.google.com'
+      }
+    })
+  })
+})()
+</script>
+</body>
+</html>

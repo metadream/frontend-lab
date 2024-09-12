@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no"/>
+  <meta name="description" content="You are lost in coding."/>
+  <title>404 - Page Not Found</title>
+  <link rel="icon" href="/assets/logo.png"/>
+  <script src="//cdn.jsdelivr.net/npm/typed.js@2.1.0/dist/typed.umd.min.js"></script>
+  <style>
+  @font-face {
+    font-family: Officecode;
+    src: url(//cdn.arraywork.com/assets/font/officecode.woff2) format('woff2');
+  }
+  body, pre {
+    font: 16px/1.6 Officecode, Consolas, Monaco, "Courier New", monospace;
+  }
+  body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    height: 100vh;
+  }
+  pre {
+    padding: 20px;
+    overflow: auto;
+  }
+  @-webkit-keyframes breathe {
+    50% {
+      background: #fde56b;
+    }
+    100% {
+      background: initial;
+    }
+  }
+  .cls { color: #16a05d; }
+  .attr { color: #4688f4; font-style:italic }
+  .method { color: #4688f4; }
+  .arg { color: orange; }
+  .num { color: #ec5e67; }
+  .str { color: #999; }
+  </style>
+</head>
+
+<body>
+<pre><span id="code"></span></pre>
+</body>
+</html>
+
+<script>
+const coding = [
+`<span class="cls">module</span>.<span class="attr">exports</span> = (<span class="arg">req</span>, <span class="arg">res</span>) => {
+  <span class="arg">res</span>.<span class="method">setHeader</span>('<span class="str">Content-Type</span>', '<span class="str">text/plain</span>')
+  <span class="arg">res</span>.<span class="method">send</span>(<span class="num">404</span>, '<span class="str">Page not found</span>')
+`,
+`<span class="cls">module</span>.<span class="attr">exports</span> = (<span class="arg">req</span>, <span class="arg">res</span>) => {
+  <span class="arg">res</span>.<span class="method">setHeader</span>('<span class="str">Content-Type</span>', '<span class="str">text/plain</span>')
+  <span class="arg">res</span>.<span class="method">redirect</span>(<span class="num">308</span>, '<span class="str">https://lab.arraywork.com</span>')
+}`]
+new Typed('#code', {
+  typeSpeed: 20,
+  backSpeed: 50,
+  startDelay: 1000,
+  backDelay: 2000,
+  strings: coding,
+  onComplete() {
+    document.body.style.animation = 'breathe 2s 1s 3'
+    document.body.onanimationend = () => {
+      if (self === top) location.href = '/'
+    }
+  }
+})
+</script>

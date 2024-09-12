@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no"/>
+  <meta name="description" content="Some animated loaders collection"/>
+  <meta name="author" content="Ai Chen"/>
+  <title>Animated Loaders</title>
+  <style>
+  body {
+    margin: 0;
+    padding: 5%;
+    display: flex;
+    flex-wrap: wrap;
+  }
+  section {
+    background: #eee;
+    width: 100px;
+    height: 100px;
+    margin: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+  }
+  section img {
+    height: 32px;
+  }
+
+  /* rotating-rectangle */
+  .rotating-rectangle {
+    width: 40px;
+    height: 30px;
+    animation: rotate-rect 1.2s infinite, change-color 1.2s infinite;
+  }
+  @keyframes change-color {
+    0% {
+      background: #009ddc;
+    }
+    33% {
+      background: #50b949;
+    }
+    66% {
+      background: #ee2d24;
+    }
+    100% {
+      background: #feb825;
+    }
+  }
+  @keyframes rotate-rect {
+    0% {
+      transform: perspective(100px) rotateX(0deg) rotateY(0deg);
+    }
+    50% {
+      transform: perspective(100px) rotateX(-180deg) rotateY(0deg);
+    }
+    100% {
+      transform: perspective(100px) rotateX(-180deg) rotateY(-180deg);
+    }
+  }
+
+  /* rotating-circles */
+  .rotating-circles, .rotating-circles:before, .rotating-circles:after {
+    border-width: 1px;
+    border-style: solid;
+    border-radius: 50%;
+    border-left-color:transparent;
+    border-right-color:transparent;
+  }
+  /* 外层圆弧 */
+  .rotating-circles {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 24px;
+    height: 24px;
+    border-top-color: #db3a2e;
+    border-bottom-color: #336503;
+    animation: rotate-circles 4s ease-in-out infinite alternate;
+  }
+  /* 中间层圆弧 */
+  .rotating-circles:before {
+    content: '';
+    position: absolute;
+    width: 60%;
+    height: 60%;
+    border-top-color: #f69833;
+    border-bottom-color: #599709;
+    animation: rotate-circles 8s ease-in-out infinite alternate;
+  }
+   /* 内层圆弧 */
+  .rotating-circles:after {
+    content: '';
+    position: absolute;
+    width: 20%;
+    height: 20%;
+    border-top-color: #fed52e;
+    border-bottom-color: #8dd313;
+    animation: rotate-circles 16s ease-in-out infinite alternate;
+  }
+  @keyframes rotate-circles {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(1440deg);
+    }
+  }
+  </style>
+</head>
+
+<body>
+
+<section>
+  <img src="inflated-dots.svg"/>
+</section>
+
+<section>
+  <img src="mobile-standard-loader.svg"/>
+</section>
+
+<section>
+  <div class="rotating-rectangle"></div>
+</section>
+
+<section>
+  <div class="rotating-circles"></div>
+</section>
+
+</body>
+</html>

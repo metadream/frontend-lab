@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Simple Typing Animation</title>
+  <style>
+  @font-face {
+    font-family: Officecode;
+    src: local('Officecode'), local('Officecode'), url(//cdn.arraywork.com/assets/font/officecode.woff2) format('woff2')
+  }
+  body, pre {
+    font: 16px/1.6 Officecode, Consolas, Monaco, monospace;
+  }
+  body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    height: 100vh;
+  }
+  a {
+    color: inherit;
+  }
+  pre {
+    padding: 30px;
+    transition: all 2s;
+    overflow: auto;
+  }
+  pre.reverse {
+    background: #4f5b66;
+    color: #eee;
+  }
+  pre:after {
+    content: '';
+    border-right: 2px solid #ffce43;
+    padding-left: 2px;
+    vertical-align: middle;
+  }
+  pre.blink:after {
+    opacity: 0;
+  }
+  </style>
+</head>
+
+<body>
+<pre>
+<span style="color:#16a05d">module</span>.<span style="color:#4688f4;font-style:italic">exports</span> = (<span style="color:orange">req</span>, <span style="color:orange">res</span>) => {
+  <span style="color:orange">res</span>.<span style="color:#4688f4">setHeader</span>('<span style="color:#999">Content-Type</span>', '<span style="color:#999">text/html</span>')
+  <span style="color:orange">res</span>.<span style="color:#4688f4">send</span>(<span style="color:#ec5e67">404</span>, '<span style="color:#999">Page not found. <a href="/">CLICK ME</a> to return.</span>')
+}
+</pre>
+</body>
+</html>
+
+<script>
+typing(document.querySelector('pre'))
+
+/**
+ * 支持多行及样式的打字效果
+ * 如果有text参数，则el为打字结果显示的目标元素
+ * 如果没有text参数，则从el获取文字同时将打字结果显示在该元素
+ */
+function typing(el, text) {
+  text = (text || el.innerHTML).trim()
+  el.innerHTML = ''
+  const chars = text.split('')
+  let index = 0, typetimer, cursorTimer
+
+  (function typeByWord() {
+    el.classList.remove('blink')
+    clearInterval(cursorTimer)
+
+    // 逐字累加输出
+    const result = chars.slice(0, index).join('')
+    el.innerHTML = result
+    typetimer = setTimeout(typeByWord, 20)
+
+    // 所有内容打字完成，光标闪烁
+    if (index === chars.length) {
+        clearTimeout(typetimer)
+        cursorTimer = setInterval(() => el.classList.toggle('blink'), 500)
+        setTimeout(() => el.classList.add('reverse'), 1000)
+    }
+    // 遇到尖括号跳过
+    if (chars[index] === '<') {
+        index = text.indexOf('>', index) + 1
+    } else {
+        index++
+    }
+  })()
+}
+</script>

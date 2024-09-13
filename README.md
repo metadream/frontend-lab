@@ -62,7 +62,7 @@
   </section>
 
   <section>
-    <a target="_blank" style="background: #ebb680" href="https://patorjk.com/software/taag">
+    <a target="_blank" style="background: #bbb" href="https://patorjk.com/software/taag">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024"><path d="M853 171H171a43 43 0 0 0-43 42v128a43 43 0 0 0 85 0v-85h256v555h-85a43 43 0 0 0 0 85h256a43 43 0 0 0 0-85h-85V256h256v85a43 43 0 0 0 85 0V213a43 43 0 0 0-43-42z"/></svg>
     </a>
     <div>Figlet</div>

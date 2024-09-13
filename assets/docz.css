@@ -109,11 +109,12 @@ iframe {
   flex-direction: column;
   align-items: center;
   margin: 2%;
-  width: 100px;
+  width: 96px;
   white-space: nowrap;
 }
 
 .apps a {
+  display: flex;
   width: 64px;
   height: 64px;
   padding: 15px;

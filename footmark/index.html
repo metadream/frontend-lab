@@ -1,0 +1,178 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no"/>
+  <meta name="keywords" content="中国地图,中国城市,足迹地图,数据地图,城市地图"/>
+  <meta name="description" content="那些年我们走过的城市"/>
+  <link rel="icon" type="image/png" href="images/logo.png"/>
+  <link rel="stylesheet" href="assets/map.css"/>
+  <script src="https://cdn.unpkg.net/~metadream/que@0.0.1/que.min.js"></script>
+  <script src="https://cdn.unpkg.net/~metadream/thyme@0.0.9/dist/thyme.js"></script>
+  <script src="assets/highmaps.js"></script>
+  <script src="assets/china.js"></script>
+  <title>足迹地图</title>
+</head>
+<body>
+
+<header>
+  <div>
+    <script>atOptions = {'key':'3df00d6972f4c1492a24e0261ded7c99','format':'iframe','height':50,'width':320,'params' : {}};</script>
+    <script src="//www.topcreativeformat.com/3df00d6972f4c1492a24e0261ded7c99/invoke.js"></script>
+  </div>
+  <div class="heading">
+    <div>足迹地图：那些年我们走过的城市</div>
+    <div class="warning">您的数据仅保存在本地浏览器，清除缓存后数据将会丢失</div>
+  </div>
+</header>
+
+<main>
+  <div id="china-map"></div>
+  <div id="china-city">
+    <div foreach="(province, i) in cityList">
+      <div class="province">{{province.province}}</div>
+      <div class="cities">
+        <div foreach="(city, j) in province.cities"
+         id="{{city.id}}" data-i="{{i}}" data-j="{{j}}" class="city"
+         @click="toggleCity">{{city.name}}</div>
+      </div>
+    </div>
+    <footer>Developed by <a href="/">app.unpkg.net</a></footer>
+  </div>
+</main>
+
+<div id="toolbar">
+  <button title='恢复视图' @click="resetMap"><img src='images/reset.png'/></button>
+  <button title='下载图片' @click="download"><img src='images/download.png'/></button>
+</div>
+
+<th-dialog>
+  <img style="max-width:600px;max-height:390px;max-width:100%;"/>
+</th-dialog>
+
+</body>
+</html>
+
+<script>
+const totalCity = 349
+const ftkey = '_footmark_'
+const mapData = Highcharts.maps['cn/china']
+const cityData = Highcharts.maps['city/china']
+
+const map = new Highcharts.Map('china-map', {
+  chart: {
+    style: {fontSize:10, fontFamily:'Lexend'},
+    zoomType: 'xy',
+    resetZoomButton: {
+      theme: {display: 'none'}
+    }
+  },
+  title: {
+    text: '那些年我们走过的城市',
+    y: 40,
+    style: {fontWeight:700},
+  },
+  subtitle: {
+    text: 'Developed by app.unpkg.net',
+    y: 65,
+    style: {color:'#bbb'},
+  },
+  credits: {
+    enabled: false,
+  },
+  tooltip: {
+    enabled: false,
+  },
+  legend: {
+    itemStyle: {color:'#999', fontSize:10, fontWeight:400},
+  },
+  mapNavigation: {
+    enabled: true,
+    enableButtons: false
+  },
+  plotOptions: {
+    series: {
+      dataLabels: {
+        enabled: true,
+        allowOverlap: false,
+        style: {color:'#333'},
+      },
+      marker: {
+        fillColor: '#F6D884',
+        lineColor: '#C86400',
+        lineWidth: 2,
+        radius: 3,
+      }
+    }
+  },
+  series: [{
+    mapData: mapData,
+    showInLegend: false
+  }, {
+    type: 'mappoint',
+    name: '含港澳台在内全国共' +totalCity+ '座地级城市',
+  }]
+})
+
+const dialog = document.querySelector('th-dialog');
+dialog.buttons = ['关闭'];
+
+new Que({
+  data: {
+    cityList: cityData,
+  },
+  ready() {
+    if (typeof Storage === 'undefined') {
+      document.querySelector('.warning').innerHTML = '您的浏览器不支持本地存储，页面刷新后数据将会丢失'
+      return
+    }
+    let footmark = JSON.parse(localStorage.getItem(ftkey))
+    footmark && footmark.forEach(city => this.render(city))
+  },
+  toggleCity(e) {
+    let data = e.target.dataset
+    let city = this.cityList[data.i].cities[data.j]
+    this.render(city)
+    if (typeof Storage !== 'undefined') {
+      this.save()
+    }
+  },
+  render(city) {
+    let element = document.querySelector('#'+city.id)
+    let mapPoint = map.get(city.id)
+    if (mapPoint) {
+      mapPoint.remove()
+      element.classList.remove('selected')
+    } else {
+      map.series[1].addPoint(city)
+      element.classList.add('selected')
+    }
+    this.countCity()
+  },
+  countCity() {
+    let beenCity = map.series[1].data.length
+    let percentage = (beenCity / totalCity * 100).toFixed(1)
+    map.series[1].update({
+      name: '已点亮' +beenCity+ '座城市 (占比' +percentage+ '%)'
+    })
+  },
+  save() {
+    let footmark = []
+    let data = map.series[1].data
+    data && data.forEach(city => {
+      footmark.push({ id: city.id, name: city.name, x: city.x, y: city.y })
+    })
+    localStorage.setItem(ftkey, JSON.stringify(footmark))
+  },
+  download() {
+    const svg = document.querySelector('svg')
+    Thyme.util.svg2png(svg, 2, uri => {
+      dialog.querySelector('img').src = uri;
+      dialog.open();
+    });
+  },
+  resetMap() {
+    map.zoomOut()
+  }
+})
+</script>

@@ -1,7 +1,7 @@
 @font-face {
   font-family: Lexend;
   font-display: swap;
-  src: local('Lexend'), url(//cdn.unpkg.net/~metadream/assets/font/Lexend.woff2) format('woff2');
+  src: local('Lexend'), url(//cdn.arraywork.com/font/Lexend.woff2) format('woff2');
 }
 
 /* ----------------------------------------------
@@ -23,7 +23,6 @@ header {
   background-size: cover;
   background-position: center;
 }
-
 
 header .heading {
   display: flex;
@@ -128,11 +127,9 @@ footer {
     flex-direction: column;
     height: auto;
   }
-
   #china-map {
     width: 100%;
   }
-
   .warning {
     display: none;
   }

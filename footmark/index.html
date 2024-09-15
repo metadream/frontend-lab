@@ -7,8 +7,8 @@
   <meta name="description" content="那些年我们走过的城市"/>
   <link rel="icon" type="image/png" href="images/logo.png"/>
   <link rel="stylesheet" href="assets/map.css"/>
-  <script src="https://cdn.unpkg.net/~metadream/que@0.0.1/que.min.js"></script>
-  <script src="https://cdn.unpkg.net/~metadream/thyme@0.0.9/dist/thyme.js"></script>
+  <script src="https://cdn.arraywork.com/assets/que@0.0.1.js"></script>
+  <script src="https://cdn.arraywork.com/assets/thyme@0.1.0.js"></script>
   <script src="assets/highmaps.js"></script>
   <script src="assets/china.js"></script>
   <title>足迹地图</title>
@@ -37,7 +37,7 @@
          @click="toggleCity">{{city.name}}</div>
       </div>
     </div>
-    <footer>Developed by <a href="/">app.unpkg.net</a></footer>
+    <footer>Developed by <a href="/">lab.arraywork.com</a></footer>
   </div>
 </main>
 
@@ -73,7 +73,7 @@ const map = new Highcharts.Map('china-map', {
     style: {fontWeight:700},
   },
   subtitle: {
-    text: 'Developed by app.unpkg.net',
+    text: 'Developed by lab.arraywork.com',
     y: 65,
     style: {color:'#bbb'},
   },

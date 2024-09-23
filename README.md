@@ -13,7 +13,7 @@
   </section>
 
   <section>
-    <a target="_blank" style="background: #efdd0e" href="https://www.minifier.org">
+    <a target="_blank" style="background: #efdd0e" href="https://minify-js.com">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024"><path d="M958 447 761 250l-66 66 197 197-197 198 66 66 197-198 66-66zM263 250 66 447 0 513l66 66 197 198 66-66-197-198 197-197zm80 699L591 52l90 25-248 897z"/></svg>
     </a>
     <div>Minifier</div>

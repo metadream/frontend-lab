@@ -46,6 +46,14 @@ document.addEventListener('DOMContentLoaded', function() {
             fetch(url).then(res => res.text()).then(res => {
                 main.innerHTML = marked.parse(res)
                 main.classList.remove('with-frame')
+
+                if (url == '/README.md') {
+                    const ads = main.querySelector('#ads')
+                    const script = document.createElement('script')
+                    script.async = 'async'
+                    script.src = '//pl22552969.profitablecpmrate.com/afdc76243524764d5b10cb5ed222fc26/invoke.js'
+                    ads.append(script)
+                }
             })
         } else {
             const frame = createFrameElement()

@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', function () {
+document.addEventListener('DOMContentLoaded', function() {
     const sidebar = document.querySelector('aside')
     const nav = document.querySelector('nav')
     const menu = document.querySelector('menu')
@@ -23,7 +23,7 @@ document.addEventListener('DOMContentLoaded', function () {
     function addLinksClick() {
         const links = sidebar.querySelectorAll('a')
         links.forEach(link => {
-            link.addEventListener('click', function (e) {
+            link.addEventListener('click', function(e) {
                 e.preventDefault()
 
                 const url = this.getAttribute('href')
@@ -46,13 +46,6 @@ document.addEventListener('DOMContentLoaded', function () {
             fetch(url).then(res => res.text()).then(res => {
                 main.innerHTML = marked.parse(res)
                 main.classList.remove('with-frame')
-
-                if (url == '/README.md') {
-                    const ads = main.querySelector('#ads')
-                    const script = document.createElement('script')
-                    script.src = '//pl22552969.profitablegatecpm.com/afdc76243524764d5b10cb5ed222fc26/invoke.js'
-                    ads.append(script)
-                }
             })
         } else {
             const frame = createFrameElement()

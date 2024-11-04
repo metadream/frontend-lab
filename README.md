@@ -1,6 +1,7 @@
 # Front-end Lab
 
 <div id="ads">
+  <script async="async" data-cfasync="false" src="//pl22552969.profitablecpmrate.com/afdc76243524764d5b10cb5ed222fc26/invoke.js"></script>
   <div id="container-afdc76243524764d5b10cb5ed222fc26"></div>
 </div>
 

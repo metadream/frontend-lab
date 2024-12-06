@@ -1,7 +1,7 @@
 @font-face {
   font-family: Lexend;
   font-display: swap;
-  src: local('Lexend'), url(//cdn.arraywork.com/font/Lexend.woff2) format('woff2');
+  src: local('Lexend'), url(//cdn.unpkg.net/assets/font/Lexend.woff2) format('woff2');
 }
 
 /* ----------------------------------------------

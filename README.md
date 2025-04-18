@@ -1,7 +1,8 @@
 # Front-end Lab
 
 <div id="ads">
-  <div id="container-afdc76243524764d5b10cb5ed222fc26"></div>
+  <script>atOptions = { key: 'a47c9d717c60222d213e1f0c57b5ada9', format: 'iframe', height: 90, width: 728, params: {} };</script>
+  <script src="//www.highperformanceformat.com/a47c9d717c60222d213e1f0c57b5ada9/invoke.js"></script>
 </div>
 
 <div class="apps">

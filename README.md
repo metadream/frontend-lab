@@ -1,10 +1,5 @@
 # Front-end Lab
 
-<div id="ads">
-  <script>atOptions = { key: 'a47c9d717c60222d213e1f0c57b5ada9', format: 'iframe', height: 90, width: 728, params: {} };</script>
-  <script src="//www.highperformanceformat.com/a47c9d717c60222d213e1f0c57b5ada9/invoke.js"></script>
-</div>
-
 <div class="apps">
   <section>
     <a target="_blank" style="background: #f0c15c" href="/footmark/">
